@@ -21,11 +21,13 @@ $(document).ready(function () {
     // 点击按钮切换输入框显示的内容
     $("#search_by_address").click(function () {
         $("#search_content").attr("placeholder", "请输入区域、商圈或小区名开始找房")
+        $("#search_content").attr("name", "addr")
         $("#search_by_address").addClass("search_active")
         $("#search_by_rooms").removeClass("search_active")
     })
     $("#search_by_rooms").click(function () {
         $("#search_content").attr("placeholder", "请输入户型开始找房, 例如1室1厅")
+        $("#search_content").attr("name", "rooms")
         $("#search_by_rooms").addClass("search_active")
         $("#search_by_address").removeClass("search_active")
     })
@@ -41,21 +43,21 @@ $(document).ready(function () {
     $('#search_content').on('compositionend', function () {
         cpLock = false;
         var keyWord = search_content.value;
-        var resultList = searchByIndexOf(keyWord);
+        var resultList = search_by_indexOf(keyWord);
     });
 
     // 英文搜索，监听input事件，用于处理字母搜索
     $('#search_content').on('input', function () {
         if (!cpLock) {
             var keyWord = search_content.value;
-            var resultList = searchByIndexOf(keyWord);
+            var resultList = search_by_indexOf(keyWord);
         }
     });
 
 })
 
 
-function searchByIndexOf(keyword) {
+function search_by_indexOf(keyword) {
     $(".nav_tab li").each(function (index, element) {
         // 判断用户所选择的搜索类型
         if ($(this).hasClass("search_active")) {
@@ -77,19 +79,36 @@ function searchByIndexOf(keyword) {
                         // search_content.value = ""
                     } else {
                         for (let i = 0; i < data["data"].length; i++) {
-                            txt += `<li><span class="name">${data["data"][i]["name"]}</span>
+                            txt += `<li class="result_list" title="${data['data'][i]['name']}"><span class="name">${data["data"][i]["name"]}</span>
                                     <span class="val">有${data["data"][i]["count"]}套房</span></li>`
                         }
                     }
                     search_result.innerHTML = txt
+                    info_to_txt()
                     if (search_content.value.length === 0) {
                         search_result.innerHTML = ""
                     }
+                    return data["data"]
+
                 }
             })
 
         }
 
     })
-    return 1
+}
+
+// 点击检索候选区将其填入输入框
+function info_to_txt() {
+    $(".result_list").on("click", function () {
+        // 重复点击初始化
+        if ($(this).hasClass("active")) {
+            $(this).removeClass("active")
+        }
+        $(this).addClass("actice")
+        t_name = $(this).attr("title")
+        $("#search_content").val("")
+        $("#search_content").val(t_name)
+        $("#search_result").empty()
+    })
 }

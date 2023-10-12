@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <script src="../static/js/search_list.js"></script>
+    <link rel="stylesheet" href="../static/css/search_list.css">
+</head>
+<body>
+{% if house_data | length %}
+    <div class="house_list">
+        <ul>
+            {% for elem in house_data %}
+                <li>
+                    <img class="img_view" src="../static/images/house-bg1.jpg" alt="">
+                    <div class="right">
+                        <p><span class="title">{{ elem.title }}</span><span class="price">￥{{ elem.price }}</span></p>
+                        <p>房源地址：<span class="address">{{ elem.address }}</span></p>
+                        <p>房源户型：<span class="rooms">{{ elem.rooms }}</span></p>
+                        <p>房源朝向：<span class="direction">{{ elem.direction }}</span></p>
+                        <p>交通条件：<span class="traffic">{{ elem.traffic }}</span></p>
+                        <p><img class="like" src="../static/images/like.png" alt="">{{ elem.page_views }}人浏览过</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <p style="font-size: 20px;">搜索结果为空！</p>
+{% endif %}
+</body>
+</html>

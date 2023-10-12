@@ -1,58 +1,28 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>首页</title>
-    <script src="../static/js/jquery.min.js"></script>
+{% extends "header.html" %}
+{% block title %}
+    首页
+{% endblock %}
+{% block headfile %}
     <link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-{#    <div class="area_info">#}
-{#        <span style="color: #2980b9">当前城市:</span>#}
-{#        <span style="color:#e74c3c">北京</span>#}
-{#        &nbsp;#}
-{#        <span style="color: #2980b9">房源总数:</span>#}
-{#        <span style="color:#e74c3c">{{ num }}</span>#}
-{#    </div>#}
-
-{#<h1 class="title">为您之家</h1>#}
-{#<p class="sub-title">为您精准定位当前城市房源信息</p>#}
-{#<div class="houses">#}
-{#    {% for elem in house_new_list %}#}
-{#        <div class="house_new">#}
-{#            <img src="../static/images/house.jpg" alt="">#}
-{#            <p class="house-title">{{ elem.title }}</p>#}
-{#            <p>#}
-{#                <span class="rooms">{{ elem.rooms }}</span>·#}
-{#                <span class="area">{{ elem.area }}</span>#}
-{#            </p>#}
-{#            <p class="price">￥{{ elem.price }}</p>#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#</div>#}
-{#背景蒙版#}
-<div class="bg"></div>
-<div class="title">
-    <p>二手好房</p>
-    <p>给您推荐优质房源</p>
-    <div class="search">
-        <ul class="nav_tab">
-            <li class="search_by search_active" id="search_by_address">地区搜索</li>
-            <li class="search_by" id="search_by_rooms">户型搜索</li>
-        </ul>
-        <form action="" method="post">
-            <input type="search" id="search_content" name="search_content" placeholder="请输入区域、商圈或小区名开始找房">
-            <input type="submit" value="提交" class="search_submit">
-            <div id="search_result">
-
-            </div>
-        </form>
+{% endblock %}
+{% block content %}
+    <div class="bg"></div>
+    <div class="title">
+        <p>二手好房</p>
+        <p>给您推荐优质房源</p>
+        <div class="search">
+            <ul class="nav_tab">
+                <li class="search_by search_active" id="search_by_address">地区搜索</li>
+                <li class="search_by" id="search_by_rooms">户型搜索</li>
+            </ul>
+            <form action="/query">
+                <input type="search" id="search_content" name="addr" placeholder="请输入区域、商圈或小区名开始找房">
+                <input type="submit" value="提交" class="search_submit">
+                <div id="search_result"></div>
+            </form>
+        </div>
     </div>
-</div>
-
-</body>
-<script src="../static/js/style.js"></script>
-</html>
+{% endblock %}
+{% block js %}
+    <script src="../static/js/style.js"></script>
+{% endblock %}
