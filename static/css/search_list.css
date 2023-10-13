@@ -3,15 +3,14 @@
     margin: 0;
 }
 
-ul, li {
+.house_list ul, li {
     list-style: none;
 }
-li {
+.house_list li {
     width: 800px;
     height: 200px;
     border-bottom: 1px solid #cccccc;
     padding: 20px;
-
 }
 
 .house_list {

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+
+    {% block headfile %}
+    {% endblock %}
+</head>
+<body>
+{#    <div class="area_info">#}
+{#        <span style="color: #2980b9">当前城市:</span>#}
+{#        <span style="color:#e74c3c">北京</span>#}
+{#        &nbsp;#}
+{#        <span style="color: #2980b9">房源总数:</span>#}
+{#        <span style="color:#e74c3c">{{ num }}</span>#}
+{#    </div>#}
+
+{#<h1 class="title">为您之家</h1>#}
+{#<p class="sub-title">为您精准定位当前城市房源信息</p>#}
+{#<div class="houses">#}
+{#    {% for elem in house_new_list %}#}
+{#        <div class="house_new">#}
+{#            <img src="../static/images/house.jpg" alt="">#}
+{#            <p class="house-title">{{ elem.title }}</p>#}
+{#            <p>#}
+{#                <span class="rooms">{{ elem.rooms }}</span>·#}
+{#                <span class="area">{{ elem.area }}</span>#}
+{#            </p>#}
+{#            <p class="price">￥{{ elem.price }}</p>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#</div>#}
+<div class="bg"></div>
+
+{% block header %}
+    <header>
+        <div class="header">
+            <div class="logo">二手好房</div>
+            <nav>
+                <ul>
+                    <li>
+                        <img src="{{ url_for("static", filename="images/个人.png") }}" alt="">
+                        <a href="">个人主页</a>
+                    </li>
+                    {#                    <li><img src="../static/images/房源.png" alt=""><a href="search_list.html">最新房源</a></li>#}
+                    <li>
+                        <img src="{{ url_for('static', filename='images/首页.png') }}" alt="">
+                        <a href="{{ url_for('index_page.index') }}">首页</a>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='images/最新.png') }}" alt="">
+                        <a href="{{ url_for('list_page.return_new_list') }}">最新房源</a>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='images/最热.png') }}" alt="">
+                        <a href="">最热房源</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+</body>
+{% block js %}
+{% endblock %}
+</html>
