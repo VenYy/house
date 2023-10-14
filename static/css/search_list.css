@@ -18,7 +18,9 @@
     width: 820px;
     margin: 0 auto;
 }
-
+.house_list a:hover .title {
+    color: #2980b9;
+}
 
 .img_view {
     width: 300px;

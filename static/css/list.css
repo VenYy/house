@@ -7,6 +7,7 @@
     opacity: .9;
 }
 
+
 .pagination {
     padding: 20px 0;
     text-align: center;
@@ -18,7 +19,4 @@
     color: #4a5158;
     font-size: 15px;
     border: 1px solid #ccc;
-}
-.right p:first-child a:hover {
-    color: #2980b9;
 }
