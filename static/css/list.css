@@ -19,3 +19,6 @@
     font-size: 15px;
     border: 1px solid #ccc;
 }
+.right p:first-child a:hover {
+    color: #2980b9;
+}

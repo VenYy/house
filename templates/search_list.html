@@ -14,14 +14,14 @@
         <ul>
             {% for elem in house_data %}
                 <li>
-                    <img class="img_view" src="../static/images/house-bg1.jpg" alt="">
+                    <a href="{{ url_for('detail_page.detail', hid=elem.id) }}" style="text-decoration: none"><img class="img_view" src="{{ url_for('static', filename='images/house-bg1.jpg') }}" alt=""></a>
                     <div class="right">
-                        <p><span class="title">{{ elem.title }}</span><span class="price">￥{{ elem.price }}</span></p>
+                        <p><a href="{{ url_for('detail_page.detail', hid=elem.id) }}" style="text-decoration: none"><span class="title">{{ elem.title }}</span><span class="price">￥{{ elem.price }}</span></a></p>
                         <p>房源地址：<span class="address">{{ elem.address }}</span></p>
                         <p>房源户型：<span class="rooms">{{ elem.rooms }}</span></p>
                         <p>房源朝向：<span class="direction">{{ elem.direction }}</span></p>
                         <p>交通条件：<span class="traffic">{{ elem.traffic }}</span></p>
-                        <p><img class="like" src="../static/images/like.png" alt="">{{ elem.page_views }}人浏览过</p>
+                        <p><img class="like" src="{{ url_for('static', filename='images/like.png') }}" alt="">{{ elem.page_views }}人浏览过</p>
                     </div>
                 </li>
             {% endfor %}

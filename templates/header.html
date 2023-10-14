@@ -48,21 +48,20 @@
             <nav>
                 <ul>
                     <li>
-                        <img src="{{ url_for("static", filename="images/个人.png") }}" alt="">
-                        <a href="">个人主页</a>
+                        <a href=""><img src="{{ url_for("static", filename="images/个人.png") }}" alt=""> 个人主页</a>
                     </li>
                     {#                    <li><img src="../static/images/房源.png" alt=""><a href="search_list.html">最新房源</a></li>#}
                     <li>
-                        <img src="{{ url_for('static', filename='images/首页.png') }}" alt="">
-                        <a href="{{ url_for('index_page.index') }}">首页</a>
+                        <a href="{{ url_for('index_page.index') }}"><img
+                                src="{{ url_for('static', filename='images/首页.png') }}" alt=""> 首页</a>
                     </li>
                     <li>
-                        <img src="{{ url_for('static', filename='images/最新.png') }}" alt="">
-                        <a href="{{ url_for('list_page.return_new_list') }}">最新房源</a>
+                        <a href="{{ url_for('list_page.return_new_list') }}"><img
+                                src="{{ url_for('static', filename='images/最新.png') }}" alt=""> 最新房源</a>
                     </li>
                     <li>
-                        <img src="{{ url_for('static', filename='images/最热.png') }}" alt="">
-                        <a href="">最热房源</a>
+                        <a href="{{ url_for('list_page.return_hot_list') }}"><img
+                                src="{{ url_for('static', filename='images/最热.png') }}" alt=""> 最热房源</a>
                     </li>
                 </ul>
             </nav>

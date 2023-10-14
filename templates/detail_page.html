@@ -1,0 +1,37 @@
+{% extends 'header.html' %}
+{% block title %}
+    详情
+{% endblock %}
+{% block headfile %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail_page.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="detail">
+        <p class="title">{{ house.title }}</p>
+        <p class="sub_title">为您精准定位, 当前城市房源信息</p>
+        <div class="left">
+            <img src="{{ url_for('static', filename='images/house-bg1.jpg') }}" alt="" class="img_view">
+            <div class="img_bottom">
+                <p class="price">￥{{ house.price }}/月</p>
+                <span class="star"><img src="{{ url_for('static', filename='images/收藏.png') }}" alt="收藏"></span>
+            </div>
+        </div>
+
+        <div class="info">
+            <p style="font-weight:bold; font-size: 18px; color: black; margin-bottom: 5px">基本信息</p>
+            <div class="info1">
+                <p>房屋户型：<span>{{ house.rooms }}</span></p>
+                <p>所在区域：<span>{{ house.block }}</span></p>
+                <p>建筑面积：<span>{{ house.area }}平米</span></p>
+                <p>租住类型：<span>{{ house.rent_type }}</span></p>
+                <p>房屋朝向：<span>{{ house.direction }}</span></p>
+                <p>房东电话：<span style="font-style: italic">{{ house.phone_num }}</span></p>
+            </div>
+            <div class="info2">
+                <p>交通条件：<span>{{ house.travel }}</span></p>
+                <p>优势条件：<span>{{ house.matching }}</span></p>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

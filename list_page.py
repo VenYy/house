@@ -50,3 +50,19 @@ def return_new_list():
                            house_list=pagination.items,
                            page_num=pagination.page,
                            total_page_num=total_page_num)
+
+
+@list_page.route("/list/hot/")
+def return_hot_list():
+    house_num = House.query.count()  # 房源总数量
+    total_page_num = math.ceil(house_num / 10)  # 总的页码数
+    current_page = request.args.get("current_page", 1, type=int)
+    pagination = House.query.order_by(
+        House.page_views.desc()
+    ).paginate(page=current_page, per_page=10)
+
+    return render_template("list.html",
+                           pagination=pagination,
+                           house_list=pagination.items,
+                           page_num=pagination.page,
+                           total_page_num=total_page_num)
