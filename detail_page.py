@@ -1,11 +1,11 @@
 import math
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from models import House
 from sqlalchemy import func, desc
-from pyecharts.charts import Pie, Bar
+from pyecharts.charts import Pie, Bar, Line
 from pyecharts import options as opts
-from pyecharts.commons.utils import JsCode
+from datetime import datetime, timedelta
 
 detail_page = Blueprint("detail_page", __name__)
 
@@ -69,7 +69,13 @@ def chart_column(block):
         ),
         legend_opts=opts.LegendOpts(is_show=False),
         xaxis_opts=opts.AxisOpts(splitline_opts=opts.SplitLineOpts(is_show=False)),
-        yaxis_opts=opts.AxisOpts(splitline_opts=opts.SplitLineOpts(is_show=False)),
+        yaxis_opts=opts.AxisOpts(
+            name="房源数量(套)",
+            name_location="center",
+            name_textstyle_opts=opts.TextStyleOpts(line_height="45", font_size=14, color="black"),
+            splitline_opts=opts.SplitLineOpts(is_show=False),
+
+        ),
     )
 
     address_bar.add_xaxis([elem[0] for elem in address_data_result])
@@ -82,6 +88,52 @@ def chart_column(block):
                           bar_max_width="50px"
                           )
     return address_bar.dump_options_with_quotes()
+
+
+# 户型价格走势折线图
+@detail_page.route("/chart/line/<block>")
+def chart_line(block):
+    # 获取最近14天的日期列表
+    time_stamp = House.query.with_entities(House.publish_time).filter(House.block == block).all()
+    time_stamp.sort(reverse=True)
+    date_li = []
+    for i in range(1, 14):
+        latest_release = datetime.fromtimestamp(int(time_stamp[0][0]))
+        day = latest_release + timedelta(days=-i)
+        date_li.append(day.strftime("%m-%d"))
+    date_li.reverse()
+
+    # 不同户型的平均价格数据
+    room_types = ['1室1厅', '2室1厅', '2室2厅', '3室2厅']
+    result_dict = {}
+    for room_type in room_types:
+        avg_prices = House.query.with_entities(func.avg(House.price / House.area)). \
+            filter(House.block == block, House.rooms == room_type). \
+            group_by(House.publish_time).order_by(House.publish_time).all()
+        result_dict[room_type] = [round(avg_price[0], 2) for avg_price in avg_prices[-14:]]
+
+    price_line = Line()
+    price_line.add_xaxis(date_li)
+    for label, y_data in result_dict.items():
+        price_line.add_yaxis(label, y_data)
+    price_line.set_global_opts(
+        title_opts=opts.TitleOpts(
+            title=f"{block} 户型价格走势",
+            subtitle="关注房源单价, 了解各小区房价",
+            pos_left="15%"
+        ),
+        tooltip_opts=opts.TooltipOpts(trigger="axis"),
+        legend_opts=opts.LegendOpts(orient="horizontal", pos_top="5%", pos_right="15%"),
+        xaxis_opts=opts.AxisOpts(splitline_opts=opts.SplitLineOpts(is_show=False)),
+        yaxis_opts=opts.AxisOpts(
+            name="平均价格(元)",
+            name_location="center",
+            name_textstyle_opts=opts.TextStyleOpts(line_height="45", color="black", font_size=14),
+            splitline_opts=opts.SplitLineOpts(is_show=True, linestyle_opts=opts.LineStyleOpts(type_="dashed")),
+        )
+    )
+
+    return price_line.dump_options_with_quotes()
 
 
 # 过滤器

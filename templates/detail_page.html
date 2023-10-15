@@ -10,6 +10,7 @@
         var detail_url = "{{ url_for('detail_page.detail', hid=house.id) }}"
         var rooms_chart_url = "{{ url_for('detail_page.chart_rooms', block=house.block) }}"
         var address_chart_url = "{{ url_for('detail_page.chart_column', block=house.block) }}"
+        var price_chart_url = "{{ url_for('detail_page.chart_line', block=house.block) }}"
     </script>
 {% endblock %}
 {% block content %}
@@ -69,6 +70,7 @@
             <p style="font-weight:bold; font-size: 18px; color: black; margin-bottom: 20px">可视化信息</p>
             <div id="rooms"></div>
             <div id="address"></div>
+            <div id="price"></div>
         </div>
     </div>
 

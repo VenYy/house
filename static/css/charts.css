@@ -9,3 +9,9 @@
     width: 540px;
     height: 450px;
 }
+#price {
+    margin-top: 30px;
+    width: 940px;
+    height: 450px;
+    float: left;
+}

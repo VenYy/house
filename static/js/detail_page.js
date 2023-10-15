@@ -92,7 +92,20 @@ $(document).ready(function () {
         })
     }
 
+    function price_chart() {
+        const chart = echarts.init(document.getElementById("price"))
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: price_chart_url,
+            success: function (data) {
+                chart.setOption(data)
+            }
+        })
+    }
+
     rooms_chart()
     address_chart()
+    price_chart()
 })
 
