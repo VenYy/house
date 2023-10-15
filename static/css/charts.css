@@ -1,0 +1,11 @@
+#rooms {
+    width: 400px;
+    height: 450px;
+    float: left;
+}
+
+#address {
+    float: left;
+    width: 540px;
+    height: 450px;
+}

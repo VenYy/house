@@ -4,6 +4,13 @@
 {% endblock %}
 {% block headfile %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/detail_page.css') }}">
+    <script src="{{ url_for('static', filename='js/detail_page.js') }}"></script>
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    <script>
+        var detail_url = "{{ url_for('detail_page.detail', hid=house.id) }}"
+        var rooms_chart_url = "{{ url_for('detail_page.chart_rooms', block=house.block) }}"
+        var address_chart_url = "{{ url_for('detail_page.chart_column', block=house.block) }}"
+    </script>
 {% endblock %}
 {% block content %}
     <div class="detail">
@@ -20,18 +27,49 @@
         <div class="info">
             <p style="font-weight:bold; font-size: 18px; color: black; margin-bottom: 5px">基本信息</p>
             <div class="info1">
-                <p>房屋户型：<span>{{ house.rooms }}</span></p>
-                <p>所在区域：<span>{{ house.block }}</span></p>
-                <p>建筑面积：<span>{{ house.area }}平米</span></p>
-                <p>租住类型：<span>{{ house.rent_type }}</span></p>
-                <p>房屋朝向：<span>{{ house.direction }}</span></p>
-                <p>房东电话：<span style="font-style: italic">{{ house.phone_num }}</span></p>
+                <p>房屋户型：<span>{{ house.rooms | deal_none }}</span></p>
+                <p>所在区域：<span>{{ house.block | deal_none }}</span></p>
+                <p>建筑面积：<span>{{ house.area | deal_none }}平米</span></p>
+                <p>租住类型：<span>{{ house.rent_type | deal_none }}</span></p>
+                <p>房屋朝向：<span>{{ house.direction | deal_none }}</span></p>
+                <p>房东电话：<span
+                        style="font-style: italic">{{ house.landlord | deal_none }}-{{ house.phone_num | deal_none }}</span>
+                </p>
             </div>
             <div class="info2">
-                <p>交通条件：<span>{{ house.travel }}</span></p>
-                <p>优势条件：<span>{{ house.matching }}</span></p>
+                <p>交通条件：<span>{{ house.travel | deal_none }}</span></p>
+                <p>优势条件：<span>{{ house.matching | deal_none }}</span></p>
             </div>
         </div>
-
+        <div class="facilities">
+            <p style="font-weight:bold; font-size: 18px; color: black;">房源配套设施</p>
+            <ul>
+                <li class="facility" id="bx"><img src="{{ url_for('static', filename='images/bx.png') }}" alt="bx.png">冰箱
+                </li>
+                <li class="facility" id="xyj"><img src="{{ url_for('static', filename='images/xyj.png') }}" alt="">洗衣机
+                </li>
+                <li class="facility" id="ds"><img src="{{ url_for('static', filename='images/ds.png') }}" alt="">电视</li>
+                <li class="facility" id="kt"><img src="{{ url_for('static', filename='images/kt.png') }}" alt="">空调</li>
+                <li class="facility" id="nq"><img src="{{ url_for('static', filename='images/nq.png') }}" alt="">暖气</li>
+                {#            </ul>#}
+                {#            <ul>#}
+                <li class="facility" id="rsq"><img src="{{ url_for('static', filename='images/rsq.png') }}" alt="">热水器
+                </li>
+                <li class="facility" id="trq"><img src="{{ url_for('static', filename='images/trq.png') }}" alt="">天然气
+                </li>
+                <li class="facility" id="chuang"><img src="{{ url_for('static', filename='images/chuang.png') }}"
+                                                      alt="">床
+                </li>
+                <li class="facility" id="wifi"><img src="{{ url_for('static', filename='images/wifi.png') }}" alt="">WIFI
+                </li>
+                <li class="facility" id="dt"><img src="{{ url_for('static', filename='images/dt.png') }}" alt="">电梯</li>
+            </ul>
+        </div>
+        <div class="charts">
+            <p style="font-weight:bold; font-size: 18px; color: black; margin-bottom: 20px">可视化信息</p>
+            <div id="rooms"></div>
+            <div id="address"></div>
+        </div>
     </div>
+
 {% endblock %}

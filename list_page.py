@@ -1,6 +1,7 @@
 import math
 
 from flask import Blueprint, render_template, request, redirect, url_for
+
 from models import House
 
 list_page = Blueprint("list_page", __name__)
@@ -70,3 +71,15 @@ def return_hot_list():
                            house_list=pagination.items,
                            page_num=pagination.page,
                            total_page_num=total_page_num)
+
+
+# 过滤器
+def deal_none(word):
+    print(word)
+    if len(word) == 0 or word is None:
+        return "暂无信息"
+    else:
+        return word
+
+
+list_page.add_app_template_filter(deal_none, "deal_none")

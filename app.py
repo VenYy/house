@@ -13,5 +13,6 @@ app.register_blueprint(index_page, url_prefix="/")
 app.register_blueprint(list_page, url_prefix="/")
 app.register_blueprint(detail_page, url_prefix="/")
 
+
 if __name__ == '__main__':
     app.run()

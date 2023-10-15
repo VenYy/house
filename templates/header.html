@@ -10,8 +10,9 @@
         {% endblock %}
     </title>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/charts.css') }}">
     {% block headfile %}
     {% endblock %}
 </head>
@@ -39,7 +40,6 @@
 {#        </div>#}
 {#    {% endfor %}#}
 {#</div>#}
-<div class="bg"></div>
 
 {% block header %}
     <header>
