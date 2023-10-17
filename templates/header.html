@@ -13,42 +13,38 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/charts.css') }}">
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script>
+        var current_user = ""
+        // 判断当前是否用户登录
+        function checkLoginStatus() {
+            var cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.startsWith("user=")) {
+                    current_user = cookie.substring().match(/=(.*?)=/)[1];
+                    return current_user
+                }
+            }
+            return null;
+        }
+        checkLoginStatus()
+
+    </script>
     {% block headfile %}
     {% endblock %}
 </head>
 <body>
-{#    <div class="area_info">#}
-{#        <span style="color: #2980b9">当前城市:</span>#}
-{#        <span style="color:#e74c3c">北京</span>#}
-{#        &nbsp;#}
-{#        <span style="color: #2980b9">房源总数:</span>#}
-{#        <span style="color:#e74c3c">{{ num }}</span>#}
-{#    </div>#}
-
-{#<h1 class="title">为您之家</h1>#}
-{#<p class="sub-title">为您精准定位当前城市房源信息</p>#}
-{#<div class="houses">#}
-{#    {% for elem in house_new_list %}#}
-{#        <div class="house_new">#}
-{#            <img src="../static/images/house.jpg" alt="">#}
-{#            <p class="house-title">{{ elem.title }}</p>#}
-{#            <p>#}
-{#                <span class="rooms">{{ elem.rooms }}</span>·#}
-{#                <span class="area">{{ elem.area }}</span>#}
-{#            </p>#}
-{#            <p class="price">￥{{ elem.price }}</p>#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#</div>#}
 
 {% block header %}
     <header>
         <div class="header">
-            <div class="logo">二手好房</div>
+            <div class="logo"><a href="{{ url_for('index_page.index') }}">二手好房</a></div>
             <nav>
                 <ul>
                     <li>
-                        <a href=""><img src="{{ url_for("static", filename="images/个人.png") }}" alt=""> 个人主页</a>
+                        <a href="{{ url_for('user_page.user_home') }}"><img
+                                src="{{ url_for("static", filename="images/个人.png") }}" alt=""> 个人主页</a>
                     </li>
                     {#                    <li><img src="../static/images/房源.png" alt=""><a href="search_list.html">最新房源</a></li>#}
                     <li>

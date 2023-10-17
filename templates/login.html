@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script>
+        var login_url = "{{ url_for('user_page.login') }}"
+        var register_url = "{{ url_for('user_page.register') }}"
+        var index_url = "{{ url_for('index_page.index') }}"
+    </script>
+</head>
+<body>
+<div id="bg"></div>
+<div class="container">
+    <div class="left" id="left">
+        <a href="{{ url_for('index_page.index') }}" id="goHome"> &lt;- 回到首页</a>
+        <h1 class="leftTitle">Welcome Back !</h1>
+        <span class="leftTitle">To keep connected with us please login !</span>
+        <span class="leftTitle">Or sign up your personal account</span>
+        <button id="trans">注册</button>
+        <!-- <button id="" onclick="window.location='index.html'">首页</button> -->
+    </div>
+    <div class="right" id="right">
+        <h1 class="title" id="title">Member Login</h1>
+        <form id="login-form" action="">
+            <div class="form-field">
+                <input type="text" id="uname" name="uname" placeholder="请输入用户名" required>
+            </div>
+            <div class="form-field">
+                <input type="password" id="pwd" name="pwd" placeholder="请输入密码" required>
+            </div>
+            <div>
+                <button id="btn" class="btn" type="submit">登录</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/login.js')}}"></script>
+</body>
+</html>

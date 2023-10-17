@@ -1,0 +1,137 @@
+.content {
+    width: 850px;
+    /*height: 100px;*/
+    margin: 80px auto 0;
+    background: whitesmoke;
+    border-radius: 5px;
+    opacity: .9;
+}
+
+.general_info {
+    /*height: 180px;*/
+}
+
+.general_info_avatar {
+    height: 100%;
+    float: right;;
+}
+
+@keyframes img_rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(45deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(-0deg);
+    }
+}
+
+.general_info_avatar img {
+    width: 120px;
+    height: 120px;
+    padding: 30px;
+    border-radius: 50%;
+}
+
+.general_info_avatar img:hover {
+    animation: img_rotate 3s infinite linear;
+}
+
+
+.general_info_info {
+    /*float: left;*/
+    height: 100%;
+    padding: 30px;
+    /*width: 450px;*/
+}
+
+.general_info_info p:first-child {
+    color: #222226;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.module_title {
+    font-weight: bold !important;
+    font-size: 18px !important;
+    color: white !important;
+    margin-top: 30px;
+    margin-bottom: 20px !important;
+    /*margin-left: 30px;*/
+    background: #414140;
+    /*width: 150px;*/
+    display: table;
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 5px 0 0 !important;
+    border-radius: 5px;
+}
+
+.module_title img {
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.row {
+    display: -webkit-box;
+    height: 30px;
+    line-height: 30px;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.col {
+    background: #ecf0f1;
+    width: 220px;
+    padding-left: 10px;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.col input {
+    width: 175px;
+    height: 28px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    outline: none;
+}
+
+
+.edit_btn, .submit_btn {
+    float: right;
+    height: 30px;
+    width: 60px;
+    font-size: 13px;
+    line-height: 30px;
+    background: #17a2b8;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 1px 1px 5px #4a5158;
+    transition: .2s;
+    cursor: pointer;
+}
+.edit_btn:hover, .submit_btn:hover {
+    box-shadow: 1px 1px 8px #4a5158;
+}
+.edit_btn i, .submit_btn i {
+    font-style: normal;
+}
+.edit_btn img, .submit_btn img {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    padding-right: 3px;
+
+}

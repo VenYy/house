@@ -26,7 +26,7 @@
         </div>
 
         <div class="info">
-            <p style="font-weight:bold; font-size: 18px; color: black; margin-bottom: 5px">基本信息</p>
+            <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">基本信息</p>
             <div class="info1">
                 <p>房屋户型：<span>{{ house.rooms | deal_none }}</span></p>
                 <p>所在区域：<span>{{ house.block | deal_none }}</span></p>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="facilities">
-            <p style="font-weight:bold; font-size: 18px; color: black;">房源配套设施</p>
+            <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">房源配套设施</p>
             <ul>
                 <li class="facility" id="bx"><img src="{{ url_for('static', filename='images/bx.png') }}" alt="bx.png">冰箱
                 </li>
@@ -67,7 +67,7 @@
             </ul>
         </div>
         <div class="charts">
-            <p style="font-weight:bold; font-size: 18px; color: black; margin-bottom: 20px">可视化信息</p>
+            <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">可视化信息</p>
             <div id="rooms"></div>
             <div id="address"></div>
             <div id="price"></div>

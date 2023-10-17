@@ -62,11 +62,13 @@
     float: left;
     overflow: hidden;
 }
+
 .info p {
     font-size: 14px;
     color: #716e6d;
     padding: 5px 0;
 }
+
 .info span {
     color: black;
 }
@@ -86,11 +88,34 @@
     margin: 20px 20px;
     text-align: center;
 }
+
 .facilities img {
     width: 50px;
     height: 50px;
 }
+
 .not_in {
-    color: #4a5158!important;
+    color: #4a5158 !important;
     text-decoration: line-through;
+}
+
+.module_title {
+    font-weight: bold !important;
+    font-size: 18px !important;
+    color: white !important;
+    margin-bottom: 5px !important;
+    background: #414140;
+    /*width: 150px;*/
+    display: table;
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 5px 0 0 !important;
+    border-radius: 5px;
+}
+.module_title img {
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+    padding-right: 3px;
+    padding-left: 3px;
 }

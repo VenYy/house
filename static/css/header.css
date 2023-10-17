@@ -1,9 +1,12 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Verdana, Roboto, Noto, Helvetica Neue, sans-serif !important;
 }
+
 body {
     background-image: url("../images/bg1.jpg");
+    /*background-image: url("../images/bg.png");*/
 }
 
 header {
@@ -33,6 +36,10 @@ header {
     color: white;
     font-weight: bold;
     animation: floatin 2.4s linear infinite;
+}
+.logo a {
+    text-decoration: none;
+    color: white;
 }
 
 @keyframes floatin {
@@ -66,6 +73,6 @@ nav a:hover {
 nav img {
     width: 20px;
     height: 20px;
-    vertical-align: text-bottom;
+    vertical-align: sub;
     padding-left: 15px;
 }

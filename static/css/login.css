@@ -1,0 +1,195 @@
+#bg {
+    background-image: url("/static/images/bg1.jpg");
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*opacity: 0.8;*/
+}
+
+
+a {
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6f5f7;
+}
+
+.container {
+    position: relative;
+    width: 800px;
+    height: 480px;
+    /* background-color: white; */
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    /* overflow: hidden; */
+}
+
+.left {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#goHome {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+}
+
+.left button {
+    width: 220px;
+    height: 50px;
+
+    /* 定位 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    /* 外观 */
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #57b846;
+    color: white;
+    transition: 0.6s;
+}
+.left button:hover {
+    background-color: #333333;
+}
+
+.leftTitle {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.right {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 50%;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+/*======控制输入框前的图标======*/
+form .form-field::before {
+    font-size: 20px;
+    position: absolute;
+    left: 15px;
+    color: #888888;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+form .form-field:nth-child(1)::before {
+    /*    content: '' 是 CSS 中 ::before 和 ::after 伪元素必须要设置的一个属性。*/
+    /*它的作用是为伪元素生成一个空的内容，这样才能使伪元素正常工作，并且在页面上显示出来。*/
+    content: "";
+    background-image: url("/static/images/user-icon.png");
+    width: 16px;
+    height: 16px;
+}
+
+form .form-field:nth-child(2)::before,
+form .form-field:nth-child(3)::before {
+    content: "";
+    background-image: url("/static/images/lock-icon.png");
+    width: 16px;
+    height: 16px;
+}
+
+/*========End========*/
+
+/*=========表单输入框的样式=============*/
+form .form-field {
+    display: flex;
+
+    /*两端对齐*/
+    justify-content: space-between;
+
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+form input {
+    width: 300px;
+    height: 50px;
+
+    outline: none;
+    background-color: #e6e6e6;
+    border-radius: 25px;
+    border: none;
+    display: block;
+
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16); */
+    font-size: 17px;
+    color: #4a4a4a;
+    text-indent: 40px;
+}
+
+form input:focus {
+    border: 1px solid #57b846;
+}
+form .btn {
+    width: 300px;
+    height: 50px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #47ab11;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.6s;
+}
+form .btn:hover {
+    background-color: #333333;
+}
+
+/*=========End========*/
+
+#success-alert {
+    display: none;
+}
