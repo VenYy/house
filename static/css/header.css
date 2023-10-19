@@ -5,7 +5,10 @@
 }
 
 body {
-    background-image: url("../images/bg1.jpg");
+    background-image: url("../images/indexbg.png");
+    background-repeat: repeat-y;
+    background-size: cover;
+
     /*background-image: url("../images/bg.png");*/
 }
 
@@ -75,4 +78,5 @@ nav img {
     height: 20px;
     vertical-align: sub;
     padding-left: 15px;
+    padding-right: 5px;
 }

@@ -1,11 +1,26 @@
 .content {
-    width: 850px;
+    width: 1200px;
     /*height: 100px;*/
     margin: 80px auto 0;
-    background: whitesmoke;
+
+}
+
+.left {
+    float: left;
+    background: white;
     border-radius: 5px;
     opacity: .9;
+    width: 300px;
 }
+
+.content > .right {
+    float: left;
+    background: white;
+    margin-left: 10px;
+    width: 870px;
+    border-radius: 5px;
+}
+
 
 .general_info {
     /*height: 180px;*/
@@ -35,9 +50,9 @@
 }
 
 .general_info_avatar img {
-    width: 120px;
-    height: 120px;
-    padding: 30px;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
     border-radius: 50%;
 }
 
@@ -49,7 +64,7 @@
 .general_info_info {
     /*float: left;*/
     height: 100%;
-    padding: 30px;
+    padding: 30px 0 10px 25px;
     /*width: 450px;*/
 }
 
@@ -64,7 +79,7 @@
     font-size: 18px !important;
     color: white !important;
     margin-top: 30px;
-    margin-bottom: 20px !important;
+    margin-bottom: 20px;
     /*margin-left: 30px;*/
     background: #414140;
     /*width: 150px;*/
@@ -122,16 +137,161 @@
     transition: .2s;
     cursor: pointer;
 }
+
 .edit_btn:hover, .submit_btn:hover {
     box-shadow: 1px 1px 8px #4a5158;
 }
+
 .edit_btn i, .submit_btn i {
     font-style: normal;
 }
+
 .edit_btn img, .submit_btn img {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
     padding-right: 3px;
+}
 
+
+.stars {
+    padding: 0 30px 30px;
+}
+
+.stars .module_title {
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+}
+
+
+.stars_list li {
+    height: 200px;
+    list-style: none;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.img_view {
+    width: 300px;
+    height: 200px;
+    float: left;
+}
+
+ul li .right {
+    float: left;
+    width: 480px;
+    margin-left: 20px;
+}
+
+.title {
+    display: block;
+    font-size: 20px;
+    color: #4a5158;
+    font-weight: bold;
+    width: 380px;
+    /*超出内容隐藏*/
+    overflow: hidden;
+    /*溢出内容用省略号显示*/
+    text-overflow: ellipsis;
+    /*溢出不换行*/
+    white-space: nowrap;
+}
+
+.title:hover {
+    transition: .2s;
+    color: #1a94ca;
+}
+
+.price {
+    /*float: right;*/
+    color: red;
+    font-size: 16px;
+}
+
+ul li .right p:nth-child(2) {
+    margin-top: 10px;
+}
+
+/*从第二个p标签开始向后*/
+ul li .right p:nth-child(n+2) {
+    font-size: 14px;
+    line-height: 30px;
+    color: #716e6d;
+}
+
+.address, .rooms, .direction, .traffic {
+    margin-left: 15px;
+    color: black;
+    font-size: 15px;
+}
+
+.like {
+    width: 20px;
+    height: 20px;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+}
+
+ul li .right p:last-child {
+    color: #716e6d;
+}
+
+.tip {
+    color: black;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+.views {
+    background: white;
+    width: 280px;
+    border-radius: 5px;
+}
+
+.views_content {
+    padding: 15px;
+}
+
+.views_content .module_title {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.views_list p {
+    width: 250px;
+    margin: 10px 0;
+}
+
+.views_list p .title {
+    width: 200px;
+}
+
+.views_list p span a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #151816;
+    text-decoration: none;
+}
+.views_list p span a:hover {
+    color: #1a94ca;
+}
+
+.views_list p .price {
+    width: 45px;
+    color: #ccc;
+    font-size: 13px;
+    line-height: 25px;
+}
+
+.views_list p {
+  display: flex;
+  flex-wrap: wrap;
+}
+.views_list p span {
+  display: inline-block;
+}
+.views_list .title {
+  flex-grow: 1;
 }

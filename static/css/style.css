@@ -7,14 +7,14 @@
 .title p:nth-child(1) {
     font-size: 50px;
     font-weight: bold;
-    color: white;
+    color: #009944;
     text-align: center;
     padding-bottom: 5px;
 }
 
 .title p:nth-child(2) {
     font-size: 15px;
-    color: white;
+    color: #7c1b38;
     text-align: center;
     padding-bottom: 50px;
 }
@@ -36,7 +36,8 @@
 }
 
 .search_active {
-    background-color: #5bc0de;
+    background-color: #17a2b8;
+    color: white;
 }
 
 #search_content {
