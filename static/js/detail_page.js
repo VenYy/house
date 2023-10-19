@@ -107,5 +107,23 @@ $(document).ready(function () {
     rooms_chart()
     address_chart()
     price_chart()
+
+    // 用户点击收藏
+    document.getElementById("add_star").addEventListener("click", function () {
+        $.ajax({
+            url: add_star_url,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 1) {
+                    alert(data["info"])
+                }
+                else {
+                    alert(data["error"])
+                }
+            }
+        })
+    })
+
 })
 
