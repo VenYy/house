@@ -11,6 +11,7 @@
         var rooms_chart_url = "{{ url_for('detail_page.chart_rooms', block=house.block) }}"
         var address_chart_url = "{{ url_for('detail_page.chart_column', block=house.block) }}"
         var price_chart_url = "{{ url_for('detail_page.chart_line', block=house.block) }}"
+        var add_star_url = "{{ url_for('user_page.add_star', house_id=house.id) }}"
     </script>
 {% endblock %}
 {% block content %}
@@ -21,7 +22,7 @@
             <img src="{{ url_for('static', filename='images/house-bg1.jpg') }}" alt="" class="img_view">
             <div class="img_bottom">
                 <p class="price">￥{{ house.price }}/月</p>
-                <span class="star"><img src="{{ url_for('static', filename='images/收藏.png') }}" alt="收藏"></span>
+                <button type="button" id="add_star" class="star"><img src="{{ url_for('static', filename='images/收藏.png') }}" alt="收藏"></button>
             </div>
         </div>
 
@@ -43,15 +44,19 @@
             </div>
         </div>
         <div class="facilities">
-            <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">房源配套设施</p>
+            <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">房源配套设施
+            </p>
             <ul>
                 <li class="facility" id="bx"><img src="{{ url_for('static', filename='images/bx.png') }}" alt="bx.png">冰箱
                 </li>
                 <li class="facility" id="xyj"><img src="{{ url_for('static', filename='images/xyj.png') }}" alt="">洗衣机
                 </li>
-                <li class="facility" id="ds"><img src="{{ url_for('static', filename='images/ds.png') }}" alt="">电视</li>
-                <li class="facility" id="kt"><img src="{{ url_for('static', filename='images/kt.png') }}" alt="">空调</li>
-                <li class="facility" id="nq"><img src="{{ url_for('static', filename='images/nq.png') }}" alt="">暖气</li>
+                <li class="facility" id="ds"><img src="{{ url_for('static', filename='images/ds.png') }}" alt="">电视
+                </li>
+                <li class="facility" id="kt"><img src="{{ url_for('static', filename='images/kt.png') }}" alt="">空调
+                </li>
+                <li class="facility" id="nq"><img src="{{ url_for('static', filename='images/nq.png') }}" alt="">暖气
+                </li>
                 {#            </ul>#}
                 {#            <ul>#}
                 <li class="facility" id="rsq"><img src="{{ url_for('static', filename='images/rsq.png') }}" alt="">热水器
@@ -63,7 +68,8 @@
                 </li>
                 <li class="facility" id="wifi"><img src="{{ url_for('static', filename='images/wifi.png') }}" alt="">WIFI
                 </li>
-                <li class="facility" id="dt"><img src="{{ url_for('static', filename='images/dt.png') }}" alt="">电梯</li>
+                <li class="facility" id="dt"><img src="{{ url_for('static', filename='images/dt.png') }}" alt="">电梯
+                </li>
             </ul>
         </div>
         <div class="charts">
@@ -73,5 +79,11 @@
             <div id="price"></div>
         </div>
     </div>
+    {% if error %}
+        <script>alert({{ error }})</script>
+    {% endif %}
+    {% if info %}
+        <script>alert({{ info }})</script>
+    {% endif %}
 
 {% endblock %}

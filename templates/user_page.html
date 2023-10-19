@@ -4,100 +4,83 @@
 {% endblock %}
 {% block headfile %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/user_page.css') }}">
-    <script>
-        const user_info_request = window.indexedDB.open("users", 1);
-        user_info_request.onsuccess = function (event) {
-            const db = event.target.result;
-            const transaction = db.transaction(["users"], "readonly");
-            const objectStore = transaction.objectStore("users");
-            const index = objectStore.index("username");
-            const getUser = index.get("{{ username }}");
-            getUser.onsuccess = function (event) {
-                const user = event.target.result;
-                const address = user.address
-                const password = user.password
-                const email = user.email
-                if (document.getElementById("user_address")) {
-                    document.getElementById("user_address").innerText = address
-                    document.getElementById("user_pwd").innerText = "******"
-                    document.getElementById("user_email").innerText = email
-                }
-                if (document.getElementById("username_input")) {
-                    document.getElementById("username_input").setAttribute("value", "{{ username }}")
-                    document.getElementById("address_input").setAttribute("value", address)
-                    document.getElementById("password_input").setAttribute("value", password)
-                    document.getElementById("email_input").setAttribute("value", email)
-                }
-
-
-            }
-        }
-    </script>
     <script src="{{ url_for('static', filename='js/user_page.js') }}"></script>
 {% endblock %}
 {% block content %}
     <div class="content">
-        <div class="general_info">
-            <div class="general_info_avatar">
-                <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="">
-            </div>
-            <div class="general_info_info">
-                <p>{{ username }}</p>
-                <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">基本信息</p>
-                <form class="user_info" id="user_info">
-                    <div class="row">
-                        <div class="col">
-                            <span>昵称：</span>
-                            <span id="username">{{ username }}</span>
-                            <input class="new_input" name="i_username" id="username_input" type="text"
-                                   placeholder="请输入新的昵称">
+        <div class="left">
+            <div class="general_info">
+                <div class="general_info_avatar">
+                    <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="">
+                </div>
+                <div class="general_info_info">
+                    <p>{{ user_info.name }}</p>
+                    <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">基本信息
+                    </p>
+                    <form class="user_info" id="user_info" action="{{ url_for('user_page.edit_info') }}" method="post">
+                        <div class="row">
+                            <div class="col">
+                                <span>昵称：</span>
+                                <span id="username">{{ user_info.name }}</span>
+                                <input class="new_input" name="i_username" id="username_input" type="text"
+                                       placeholder="请输入新的昵称">
+                            </div>
                         </div>
-                        {#                        <div class="col_btn">#}
-                        {#                            <button class="btn_info" id="btn_username"><img src="{{ url_for('static', filename='images/编辑.png') }}" alt=""><i>编辑</i></button>#}
-                        {#                        </div>#}
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <span>住址：</span>
-                            <span id="user_address"></span>
-                            <input class="new_input" name="i_address" id="address_input" type="text"
-                                   placeholder="请输入新的住址">
+                        <div class="row">
+                            <div class="col">
+                                <span>住址：</span>
+                                <span id="user_address">{{ user_info.addr }}</span>
+                                <input class="new_input" name="i_address" id="address_input" type="text"
+                                       placeholder="请输入新的住址">
+                            </div>
                         </div>
-                        {#                        <div class="col_btn">#}
-                        {#                            <button class="btn_info" id="btn_addr"><img src="{{ url_for('static', filename='images/编辑.png') }}" alt=""><i>编辑</i></button>#}
-                        {#                        </div>#}
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <span>密码：</span>
-                            <span id="user_pwd"></span>
-                            <input class="new_input" name="i_password" id="password_input" type="password"
-                                   placeholder="请输入新的密码">
+                        <div class="row">
+                            <div class="col">
+                                <span>密码：</span>
+                                <span id="user_pwd">******</span>
+                                <input class="new_input" name="i_password" id="password_input" type="password"
+                                       placeholder="请输入新的密码">
+                            </div>
                         </div>
-                        {#                        <div class="col_btn">#}
-                        {#                            <button class="btn_info" id="btn_pwd"><img src="{{ url_for('static', filename='images/编辑.png') }}" alt=""><i>编辑</i></button>#}
-                        {#                        </div>#}
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <span>邮箱：</span>
-                            <span id="user_email"></span>
-                            <input class="new_input" name="i_email" id="email_input" type="email"
-                                   placeholder="请输入新的邮箱地址">
+                        <div class="row">
+                            <div class="col">
+                                <span>邮箱：</span>
+                                <span id="user_email">{{ user_info.email }}</span>
+                                <input class="new_input" name="i_email" id="email_input" type="email"
+                                       placeholder="请输入新的邮箱地址">
 
+                            </div>
                         </div>
-                        {#                        <div class="col_btn">#}
-                        {#                            <button class="btn_info" id="btn_email"><img src="{{ url_for('static', filename='images/编辑.png') }}" alt=""><i>编辑</i></button>#}
-                        {#                        </div>#}
-                    </div>
-                    <div class="row">
-                        <button class="edit_btn" type="button"><img
-                                src="{{ url_for('static', filename='images/编辑.png') }}" alt=""><i>编辑</i></button>
-                        <button class="submit_btn" type="button"><img
-                                src="{{ url_for('static', filename='images/提交.png') }}" alt=""><i>提交</i></button>
-                    </div>
-                </form>
+                        <div class="row">
+                            <button class="edit_btn" type="button"><img
+                                    src="{{ url_for('static', filename='images/编辑.png') }}" alt=""><i>编辑</i>
+                            </button>
+                            <button class="submit_btn" type="submit"><img
+                                    src="{{ url_for('static', filename='images/提交.png') }}" alt=""><i>提交</i>
+                            </button>
+                        </div>
+                    </form>
+                    {% if error %}
+                        <script>alert("{{ error }}")</script>
+                    {% endif %}
+                </div>
             </div>
+            <div style="height: 30px; background: #daf4e5"></div>
+            <div class="views">
+                <div class="views_content">
+                    <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">浏览历史
+                    </p>
+                    <ul id="views_list" class="views_list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="stars">
+                <p class="module_title"><img src="{{ url_for('static', filename='images/模块.png') }}" alt="">我的收藏
+                </p>
+                <ul id="stars_list" class="stars_list"></ul>
+            </div>
+
         </div>
     </div>
 {% endblock %}

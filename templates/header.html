@@ -16,6 +16,7 @@
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
     <script>
         var current_user = ""
+
         // 判断当前是否用户登录
         function checkLoginStatus() {
             var cookies = document.cookie.split(";");
@@ -28,6 +29,7 @@
             }
             return null;
         }
+
         checkLoginStatus()
 
     </script>
@@ -42,22 +44,31 @@
             <div class="logo"><a href="{{ url_for('index_page.index') }}">二手好房</a></div>
             <nav>
                 <ul>
-                    <li>
-                        <a href="{{ url_for('user_page.user_home') }}"><img
-                                src="{{ url_for("static", filename="images/个人.png") }}" alt=""> 个人主页</a>
-                    </li>
+
+                    {% if current_user %}
+                        <li>
+                            <a href="{{ url_for('user_page.log_out') }}"><img src="{{ url_for('static', filename='images/log-out.png') }}" alt="">退出登录</a>
+                            <a href="{{ url_for('user_page.user_home') }}"><img src="{{ url_for("static", filename="images/个人.png") }}" alt="">{{ current_user }}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ url_for('user_page.log_in') }}"><img
+                                    src="{{ url_for("static", filename="images/log-in.png") }}" alt="">登录</a>
+                        </li>
+                    {% endif %}
+
                     {#                    <li><img src="../static/images/房源.png" alt=""><a href="search_list.html">最新房源</a></li>#}
                     <li>
                         <a href="{{ url_for('index_page.index') }}"><img
-                                src="{{ url_for('static', filename='images/首页.png') }}" alt=""> 首页</a>
+                                src="{{ url_for('static', filename='images/首页.png') }}" alt="">首页</a>
                     </li>
                     <li>
                         <a href="{{ url_for('list_page.return_new_list') }}"><img
-                                src="{{ url_for('static', filename='images/最新.png') }}" alt=""> 最新房源</a>
+                                src="{{ url_for('static', filename='images/最新.png') }}" alt="">最新房源</a>
                     </li>
                     <li>
                         <a href="{{ url_for('list_page.return_hot_list') }}"><img
-                                src="{{ url_for('static', filename='images/最热.png') }}" alt=""> 最热房源</a>
+                                src="{{ url_for('static', filename='images/最热.png') }}" alt="">最热房源</a>
                     </li>
                 </ul>
             </nav>

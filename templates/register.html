@@ -15,15 +15,15 @@
 <div class="container">
     <div class="left" id="left">
         <a href="{{ url_for('index_page.index') }}" id="goHome"> &lt;- 回到首页</a>
-        <h1 class="leftTitle">Hello Fridend !</h1>
-        <span class="leftTitle">Enter your infomations and start join us !</span>
-        <span class="leftTitle">Or login with your account</span>
-        <button id="trans">注册</button>
+        <h1 class="leftTitle">二手好房</h1>
+        <span class="leftTitle">已有账号？点击下方按钮前往登录</span>
+        {#        <span class="leftTitle">Or login with your account</span>#}
+        <a id="trans" href="{{ url_for('user_page.log_in') }}">登录</a>
         <!-- <button id="" onclick="window.location='index.html'">首页</button> -->
     </div>
     <div class="right" id="right">
-        <h1 class="title" id="title">Member Login</h1>
-        <form id="register-form" action="" method="POST">
+        <h1 class="title" id="title">用户注册</h1>
+        <form id="register-form" action="{{ url_for('user_page.register') }}" method="post">
             <div class="form-field">
                 <input type="text" id="uname" name="uname" placeholder="请输入用户名" required>
             </div>
@@ -37,10 +37,10 @@
                 <button id="btn" class="btn" type="submit">注册</button>
             </div>
         </form>
-        <!-- 注册成功提示框 -->
-        <div id="success-alert" class="alert alert-success">
-            <strong>注册成功！</strong> 请稍等，正在跳转到登录页面... <span id="count"></span>
-        </div>
+        {% if error %}
+            <script>alert("{{ error }}")</script>
+        {% endif %}
+
     </div>
 </div>
 <script src="{{ url_for('static', filename='js/login.js') }}"></script>
