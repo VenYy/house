@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for
+from flask import Blueprint, render_template, request, jsonify, session
 from models import House
 from sqlalchemy import func
 
@@ -8,11 +8,7 @@ index_page = Blueprint("index_page", __name__)
 
 @index_page.route("/", methods=["GET", "POST"])
 def index():
-    house_total_num = House.query.count()
-    # 获取最新房源Top6
-    house_new_list = House.query.order_by(House.publish_time.desc()).limit(6).all()
-
-    return render_template("index.html", num=house_total_num, house_new_list=house_new_list)
+    return render_template("index.html")
 
 
 @index_page.route("/search/keyword/", methods=["POST"])
